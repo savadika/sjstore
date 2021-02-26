@@ -112,10 +112,11 @@ class TestQueryView(View):
         current_student2 = Course.objects.filter(course_name='yuwen').values("student__name")
         # 查询数量
         current_count = Course.objects.get(course_name='yuwen').student_set.values("name").count()
-        # F查询 和 Q 查询
-
-
-        
+        # F查询【比较一个实例中不同字段的值，例如：比较卖出数大于库存数的商品】
+        # from django.db.models import F
+        # ret1 = Course.objects.filter(maichu__gt=F('kucun'))
+        # Q查询【或 查询】
+        # models.Product.objects.filter(Q(maichu__gt=100) | Q(price__lt=100))
         return HttpResponse('all queryed!')
 
 
